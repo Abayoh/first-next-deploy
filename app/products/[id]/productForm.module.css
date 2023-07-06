@@ -1,0 +1,43 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin-bottom: 16px;
+}
+
+.inputLabel {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.inputField {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.submitButton {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submitButton:hover {
+  background-color: #0056b3;
+}
+
+.submitButton:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}

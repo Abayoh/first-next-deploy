@@ -1,0 +1,22 @@
+.priceRangeFacet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.sliders {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.slider {
+  width: 90%;
+  margin: 10px;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+

@@ -1,0 +1,19 @@
+.formInput {
+  margin-bottom: 16px;
+}
+
+.inputLabel {
+  font-weight: bold;
+}
+
+.inputField {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: #007bff;
+}

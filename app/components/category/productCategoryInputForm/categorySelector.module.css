@@ -1,0 +1,58 @@
+/* CategorySelector.module.css */
+
+.categorySelector {
+    position: relative;
+    width: 100%;
+  }
+  
+  .inputField {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .inputField input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+  }
+  
+ 
+  
+  .categoryResults {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    max-height: 200px;
+    overflow: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    z-index: 1;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+  
+  .categoryItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .categoryItem:hover {
+    background-color: #eee;
+  }
+  
+  .categoryItem > span {
+    flex-grow: 1;
+  }
+  
+  .categoryItem > button {
+    margin-left: 10px;
+  }
+  

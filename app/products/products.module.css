@@ -1,0 +1,29 @@
+.tableContainer {
+    width: 100%;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .tableHead {
+    background-color: #f5f5f5;
+  }
+  
+  .tableHeadCell {
+    padding: 12px;
+    font-weight: bold;
+  }
+  
+  .tableBodyRow:nth-child(even) {
+    background-color: #f5f5f5;
+  }
+  
+  .tableBodyRow:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .tableBodyCell {
+    padding: 12px;
+  }

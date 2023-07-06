@@ -1,95 +1,82 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import React from 'react';
+import styles from './page.module.css';
+import { Product } from './products/productsContext';
+import AddToCartButton from './components/addToCartButton/addToCartButton';
+import CartIcon from './components/cart/cartIcon';
+import Head from 'next/head';
+import Pagination from './components/pagination/pagination';
+import { APIResponse } from './types';
 
-export default function Home() {
+interface GetProductsParams {
+  page: number;
+  limit: number;
+}
+
+const getProducts = async ({
+  page = 0,
+  limit,
+}: GetProductsParams): Promise<APIResponse> => {
+  const response = await fetch(
+    `${process.env.API_BASE_URL}/products?${
+      page > 0 && limit > 0 ? 'page=' + page + '&limit=' + limit : ''
+    }`,
+    {
+      cache: 'no-cache',
+    }
+  );
+  const res = await response.json();
+
+  return res as APIResponse;
+};
+
+interface LandingPageProps {
+  searchParams: { page: number; limit: number };
+}
+
+async function LandingPage({
+  searchParams: { page, limit },
+}: LandingPageProps) {
+  const { error, messages, result, success } =
+    (await getProducts({ page, limit })) || [];
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <div className={styles.container}>
+      <Head>
+        <title>My page title</title>
+      </Head>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <h1 className={styles.title}>Product List</h1>
+        <link
+          rel='stylesheet'
+          href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
+        />
+        <CartIcon />
+      </div>
+      <div className={styles.productList}>
+        {result.products.map((product: Product) => (
+          <div key={product._id} className={styles.productCard}>
+            <h2 className={styles.productName}>{product.name}</h2>
+            <p className={styles.productDescription}>{product.description}</p>
+            <p className={styles.productPrice}>Price: {product.price}</p>
+            <AddToCartButton productId={product._id} />
+          </div>
+        ))}
+      </div>
+      <div>
+        <Pagination
+          currentPage={result.next ? result.next.page - 1 : 1}
+          limit={2}
+          totalPages={result.pages}
         />
       </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    </div>
+  );
 }
+
+export default LandingPage;

@@ -1,0 +1,30 @@
+/* Autocomplete.module.css */
+.autocomplete {
+  position: relative;
+  width: 100%;
+}
+
+.autocompleteInput {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.autocompleteResults {
+  position: absolute;
+  width: 100%;
+  background: white;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.autocompleteItem {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.autocompleteItem:hover {
+  background: #f0f0f0;
+}

@@ -1,0 +1,25 @@
+.ratingFacet {
+  padding: 1em;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ratingFacet h4 {
+  margin-bottom: 1em;
+}
+
+.ratingItem {
+  margin-bottom: 0.5em;
+}
+
+.ratingItem button {
+  background: none;
+  border: none;
+  color: #ff9800;
+  cursor: pointer;
+}
+
+.ratingItem button:hover {
+  opacity: 0.7;
+}
